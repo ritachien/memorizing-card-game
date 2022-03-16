@@ -6,15 +6,16 @@ const GAME_STATE = {
   GameFinished: "GameFinished"
 }
 
+const Suits = [
+  './image/diamond.png',  // 方塊
+  './image/club.png',    // 梅花
+  './image/heart.png',   // 愛心
+  './image/spade.png'    // 黑桃
+]
+
 
 
 const modal = {
-  Suits: [
-    './image/diamond.png',  // 方塊
-    './image/club.png',    // 梅花
-    './image/heart.png',   // 愛心
-    './image/spade.png'    // 黑桃
-  ],
   revealedCards: [],
   isRevealedCardsMatched() {
     return this.revealedCards[0].dataset.index % 13 === this.revealedCards[1].dataset.index % 13
@@ -57,7 +58,7 @@ const view = {
 
   getCardContent(index) {
     const number = this.transformNumber((index % 13) + 1)
-    const suit = modal.Suits[Math.floor(index / 13)]
+    const suit = Suits[Math.floor(index / 13)]
     return `
       <p>${number}</p>
       <img src="${suit}" alt="suit of poker card" />
