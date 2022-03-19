@@ -42,13 +42,9 @@ const view = {
 
   flipCards(...cards) {
     cards.map(card => {
-      const index = Number(card.dataset.index)
       if (card.classList.contains('back')) {
         card.classList.remove('back')
-        card.innerHTML = this.getCardContent(index)
-        if (Math.floor(index / 13) % 2 === 0) {
-          card.classList.add('red-card')
-        }
+        card.innerHTML = this.getCardContent(Number(card.dataset.index))
         return
       }
       card.innerHTML = null
@@ -67,9 +63,10 @@ const view = {
   },
 
   getCardElement(index) {
-    return `
-      <div data-index="${index}" class="card back"></div>
-    `
+    const cardColor = (Math.floor(index / 13) % 2 === 0)
+    return cardColor ?
+      `<div data-index="${index}" class="card back red-card"></div>` :
+      `<div data-index="${index}" class="card back"></div>`
   },
 
   pairCards(...cards) {
